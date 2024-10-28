@@ -7,9 +7,11 @@ module.exports = {
     extend: {
       boxShadow: {
         neu: '5px 5px 7px #1c1d1f, -5px -5px 7px #222527',
-      },
+      },                        
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 
