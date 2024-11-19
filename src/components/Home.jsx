@@ -3,6 +3,7 @@ import { useEffect, useState, React }  from 'react';
 import MovieCard from './MovieCard';
 import SearchIcon from '../assets/search.svg';
 import Header from './Header';
+import Footer from './Footer';
 
 import '../App.css';
 import '../Index.css';
@@ -59,6 +60,7 @@ const Home = () => {
         </div>
         )}
     </div>
+    <Footer />
     </>
     );
 };
