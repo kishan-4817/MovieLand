@@ -13,7 +13,7 @@ const API_ENDPOINT = `https://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}`;
 
 const Home = () => {
     useEffect(() => {
-        SearchMovies('Fast and Furious');
+        SearchMovies('Harry ');
     }, []);
     
     const [Movies, setMovies] = useState({});
@@ -28,11 +28,11 @@ const Home = () => {
     return (
     <>
     <Header />
-    <div className="p-16 flex flex-col justify-center items-center">
-        <h1 className="my-8 text-6xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent">
+    <div className="p-4 sm:p-16 flex flex-col justify-center items-center">
+        <h1 className="hidden sm:block my-8 text-6xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent">
         MovieLand
         </h1>
-        <div className="w-4/5 my-8 flex items-center justify-center p-6 rounded-full bg-[#1f2123] shadow-neu">
+        <div className="w-full sm:w-4/5 my-8 sm:my-10 flex items-center justify-center p-4 sm:p-6 rounded-full bg-[#1f2123] shadow-neu">
         <input
             type="text"
             placeholder="Search for a movie"
