@@ -4,8 +4,10 @@ import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline';
+import Header from './Header';
+import Footer from './Footer';
 
-const MAPBOX_TOKEN = 'YOUR_MAPBOX_TOKEN_HERE'; // Replace with your actual Mapbox token
+const MAPBOX_TOKEN = 'YOUR_MAPBOX_TOKEN_HERE';
 
 const Contact = () => {
   const [viewState, setViewState] = useState({
@@ -15,13 +17,10 @@ const Contact = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 py-12 px-4 sm:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto"
-      >
+    <>
+    <Header />
+    <div className="min-h-screen bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-extrabold text-white text-center mb-12">Get in Touch</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -49,7 +48,7 @@ const Contact = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold py-2 px-4 rounded-md hover:from-purple-700 hover:to-blue-600 transition duration-300"
+                className="w-full bg-gradient-to-r from-[#343739] to-[#212426] text-white font-bold py-2 px-4 rounded-md hover:from-[#454545] hover:to-[#181818] transition duration-300"
               >
                 Send Message
               </motion.button>
@@ -65,28 +64,28 @@ const Contact = () => {
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
             <div className="space-y-4">
               <div className="flex items-center">
-                <PhoneIcon className="h-6 w-6 text-purple-600 mr-4" />
-                <span className="text-gray-600">+1 (555) 123-4567</span>
+                <PhoneIcon className="h-6 w-6 text-[#f9d3b4] mr-4" />
+                <span className="text-[#f9d3b4]">+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center">
-                <EnvelopeIcon className="h-6 w-6 text-purple-600 mr-4" />
-                <span className="text-gray-600">contact@example.com</span>
+                <EnvelopeIcon className="h-6 w-6 text-[#f9d3b4] mr-4" />
+                <span className="text-[#f9d3b4]">contact@example.com</span>
               </div>
               <div className="flex items-center">
-                <MapPinIcon className="h-6 w-6 text-purple-600 mr-4" />
-                <span className="text-gray-600">123 Cool Street, Awesome City, 12345</span>
+                <MapPinIcon className="h-6 w-6 text-[#f9d3b4] mr-4" />
+                <span className="text-[#f9d3b4]">123 Cool Street, Awesome City, 12345</span>
               </div>
             </div>
             
-            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-4">Follow Us</h3>
+            <h3 className="text-xl font-semibold text-[#f9d3b4] mt-8 mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <SocialIcon Icon={FaFacebookF} href="https://facebook.com" />
-              <SocialIcon Icon={FaTwitter} href="https://twitter.com" />
-              <SocialIcon Icon={FaLinkedinIn} href="https://linkedin.com" />
-              <SocialIcon Icon={FaInstagram} href="https://instagram.com" />
+              <SocialIcon Icon={FaFacebookF} href="https://facebook.com" color="#f9d3b4" />
+              <SocialIcon Icon={FaTwitter} href="https://twitter.com" color="#f9d3b4" />
+              <SocialIcon Icon={FaLinkedinIn} href="https://linkedin.com" color="#f9d3b4" />
+              <SocialIcon Icon={FaInstagram} href="https://instagram.com" color="#f9d3b4" />
             </div>
             
-            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-4">Find Us</h3>
+            <h3 className="text-xl font-semibold text-[#f9d3b4] mt-8 mb-4">Find Us</h3>
             <div className="h-64 rounded-lg overflow-hidden">
               <Map
                 {...viewState}
@@ -100,8 +99,10 @@ const Contact = () => {
             </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </div>
+    <Footer />
+    </>
   );
 };
 
