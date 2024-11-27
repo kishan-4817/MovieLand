@@ -61,14 +61,14 @@ const Footer = () => {
                     </div>
                     <div>
                     <p class="font-medium">
-                        Services
+                        Movies
                     </p>
                     <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                        <a class="hover:opacity-75" href> 1on1 Coaching </a>
-                        <a class="hover:opacity-75" href> Company Review </a>
-                        <a class="hover:opacity-75" href> Accounts Review </a>
-                        <a class="hover:opacity-75" href> HR Consulting </a>
-                        <a class="hover:opacity-75" href> SEO Optimisation </a>
+                        <a class="hover:opacity-75" href="/movies/top-rated"> Top Rated Movies </a>
+                        <a class="hover:opacity-75" href="/movies/popular"> Popular Movies </a>
+                        <a class="hover:opacity-75" href="/movies/new-releases"> New Releases </a>
+                        <a class="hover:opacity-75" href="/movies/upcoming"> Upcoming Movies </a>
+                        <a class="hover:opacity-75" href="/movies/genres"> Genres </a>
                     </nav>
                     </div>
                     <div>

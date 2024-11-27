@@ -3,6 +3,8 @@
 :root {
   --font-Montserrat: 'Montserrat', serif;
   --font-rubik: 'Rubik', sans-serif;
+  --btn-background-color: #f9d3b4;
+  --btn-text-color: #212426;
 }
 
 * {
