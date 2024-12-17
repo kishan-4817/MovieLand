@@ -4,12 +4,12 @@ import { getAuth } from "firebase/auth";
 
 // Your Firebase configuration object
 const firebaseConfig = {
-  apiKey: "AIzaSyCT5IOU8eDfCk5LxqUONtYd6-Hg_0vlfHw",
-  authDomain: "movieland-4817.firebaseapp.com",
-  projectId: "movieland-4817",
-  storageBucket: "movieland-4817.firebasestorage.app",
-  messagingSenderId: "222008493810",
-  appId: "1:222008493810:web:fae6b94128a68227cc326b"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 // Initialize Firebase
