@@ -6,9 +6,9 @@ const Footer = () => {
             <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                 <div>
-                    <div classNameName="flex lg:flex-1">
-                        <a href="/" classNameName="-m-1.5 p-1.5">
-                            <h3 classNameName="text-4xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent"> MovieLand </h3>
+                    <div className="flex lg:flex-1">
+                        <a href="/" className="-m-1.5 p-1.5">
+                            <h3 className="text-4xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent"> MovieLand </h3>
                         </a>
                     </div>
                     <p className="max-w-xs mt-4 text-sm text-gray-600">
@@ -88,7 +88,7 @@ const Footer = () => {
                 © 2022 Comany Name
                 </p>
             </div>
-            <div classNameName="container py-4 mx-auto text-center">
+            <div className="container py-4 mx-auto text-center">
                 <p>&copy; 2023 MovieLand. All rights reserved.</p>
             </div>
         </footer>

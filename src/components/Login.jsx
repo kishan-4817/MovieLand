@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -9,27 +11,19 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent page reload
+        e.preventDefault();
         setLoading(true);
         setError('');
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                // Redirect or handle success
-                alert('Login successful!');
-            } else {
-                setError(data.message || 'An error occurred.');
-            }
+            // Firebase Authentication Login
+            await signInWithEmailAndPassword(auth, email, password);
+            alert('Login successful!');
+            // Redirect or handle success (you can use React Router for navigation)
         } catch (error) {
-            setError('Failed to connect to the server.');
+            // Handle Firebase errors
+            const errorMessage = error.message || 'An error occurred during login.';
+            setError(errorMessage);
         } finally {
             setLoading(false);
         }
