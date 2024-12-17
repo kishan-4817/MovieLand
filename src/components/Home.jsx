@@ -13,7 +13,10 @@ const API_ENDPOINT = `https://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}`;
 
 const Home = () => {
     useEffect(() => {
-        SearchMovies('Harry ');
+        const moviesList = ['Harry', 'Avengers', 'Batman', 'Spiderman', 'Iron Man', 'Thor', 'Captain America', 'Black Widow', 'The Hulk', 'Wonder Woman', 'Superman', 'Justice League', 'The Flash', 'Green Lantern', 'Aquaman', 'Shazam', 'Hellboy'];
+        const randomIndex = Math.floor(Math.random() * moviesList.length);
+        const randomMovie = moviesList[randomIndex];
+        SearchMovies(randomMovie);
     }, []);
     
     const [Movies, setMovies] = useState({});
