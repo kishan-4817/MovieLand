@@ -1,3 +1,5 @@
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Navigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
@@ -5,10 +7,15 @@ import Header from './Header';
 import Footer from './Footer';
 
 const Login = () => {
+    const [user] = useAuthState(auth);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    if (user) {
+        return <Navigate to="/" />;
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,12 +23,9 @@ const Login = () => {
         setError('');
 
         try {
-            // Firebase Authentication Login
             await signInWithEmailAndPassword(auth, email, password);
-            alert('Login successful!');
-            // Redirect or handle success (you can use React Router for navigation)
+            window.location.href = '/';
         } catch (error) {
-            // Handle Firebase errors
             const errorMessage = error.message || 'An error occurred during login.';
             setError(errorMessage);
         } finally {
