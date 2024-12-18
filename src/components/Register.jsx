@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import Header from './Header';
 import Footer from './Footer';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -29,6 +31,10 @@ const Register = () => {
             setEmail('');
             setPassword('');
             setConfirmPassword('');
+
+            // Sign in after registration and redirect to profile page
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate('/profile');
         } catch (err) {
             setError(err.message); // Display Firebase error
         }
@@ -115,4 +121,5 @@ const Register = () => {
 };
 
 export default Register;
+
 
