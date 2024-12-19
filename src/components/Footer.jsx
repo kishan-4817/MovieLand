@@ -76,10 +76,8 @@ const Footer = () => {
                         Legal
                     </p>
                     <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                        <a className="hover:opacity-75" href> Privacy Policy </a>
-                        <a className="hover:opacity-75" href> Terms &amp; Conditions </a>
-                        <a className="hover:opacity-75" href> Returns Policy </a>
-                        <a className="hover:opacity-75" href> Accessibility </a>
+                        <a className="hover:opacity-75" href="/Privacy-Policy"> Privacy Policy </a>
+                        <a className="hover:opacity-75" href="/Terms-Conditions"> Terms &amp; Conditions </a>
                     </nav>
                     </div>
                 </div>
