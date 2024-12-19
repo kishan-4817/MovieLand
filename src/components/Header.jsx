@@ -55,8 +55,11 @@ export default function Header() {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:space-x-6">
           {user ? (
-            <Link to="/profile" className="text-sm font-semibold leading-6 text-white hover:text-[#f9d3b4]">
+            <Link to="/profile" className="text-sm font-semibold leading-6 text-white hover:text-[#f9d3b4] flex items-center">
               Profile
+              <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-10 0h10zM6 12a2 2 0 110-4 2 2 0 010 4zm8 2a2 2 0 110-4 2 2 0 010 4z" clipRule="evenodd" />
+              </svg>
             </Link>
           ) : (
             <>

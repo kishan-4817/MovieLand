@@ -84,9 +84,6 @@ const Footer = () => {
                     </div>
                 </div>
                 </div>
-                <p className="mt-8 text-xs text-gray-800">
-                © 2022 Comany Name
-                </p>
             </div>
             <div className="container py-4 mx-auto text-center">
                 <p>&copy; 2023 MovieLand. All rights reserved.</p>
