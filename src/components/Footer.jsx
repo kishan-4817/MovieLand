@@ -2,19 +2,19 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="bg-[#1f2123] shadow-neu text-white from-gray-100 via-[#bce1ff] to-gray-100">
+        <footer className="bg-gray-100 dark:bg-[#1f2123] text-gray-700 dark:text-white">
             <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                 <div>
                     <div className="flex lg:flex-1">
                         <a href="/" className="-m-1.5 p-1.5">
-                            <h3 className="text-4xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent"> MovieLand </h3>
+                            <h3 className="text-4xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent dark:text-white"> MovieLand </h3>
                         </a>
                     </div>
-                    <p className="max-w-xs mt-4 text-sm text-gray-600">
+                    <p className="max-w-xs mt-4 text-sm text-gray-600 dark:text-gray-300">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
                     </p>
-                    <div className="flex mt-8 space-x-6 text-gray-600">
+                    <div className="flex mt-8 space-x-6 text-gray-600 dark:text-gray-300">
                     <a className="hover:opacity-75" href target="_blank" rel="noreferrer">
                         <span className="sr-only"> Facebook </span>
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -56,7 +56,6 @@ const Footer = () => {
                         <a className="hover:opacity-75" href> About </a>
                         <a className="hover:opacity-75" href> Meet the Team </a>
                         <a className="hover:opacity-75" href> History </a>
-                        <a className="hover:opacity-75" href> Careers </a>
                     </nav>
                     </div>
                     <div>
@@ -65,7 +64,6 @@ const Footer = () => {
                     </p>
                     <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
                         <a className="hover:opacity-75" href="/movies/top-rated"> Top Rated Movies </a>
-                        <a className="hover:opacity-75" href="/movies/popular"> Popular Movies </a>
                         <a className="hover:opacity-75" href="/movies/new-releases"> New Releases </a>
                         <a className="hover:opacity-75" href="/movies/upcoming"> Upcoming Movies </a>
                         <a className="hover:opacity-75" href="/movies/genres"> Genres </a>

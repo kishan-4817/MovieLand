@@ -32,10 +32,10 @@ const Home = () => {
     <>
     <Header />
     <div className="p-4 sm:p-16 flex flex-col justify-center items-center">
-        <h1 className="hidden sm:block my-8 text-6xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent">
+        <h1 className="hidden sm:block my-8 text-6xl tracking-wide font-bold bg-gradient-to-r from-[#343739] to-[#ffffff] bg-clip-text text-transparent dark:bg-gradient-to-r dark:from-[#f9d3b4] dark:to-transparent dark:bg-clip-text dark:text-transparent">
         MovieLand
         </h1>
-        <div className="w-full sm:w-4/5 my-8 sm:my-10 flex items-center justify-center p-4 sm:p-6 rounded-full bg-[#1f2123] shadow-neu">
+        <div className="w-full sm:w-4/5 my-8 sm:my-10 flex items-center justify-center p-4 sm:p-6 rounded-full bg-[#1f2123] dark:shadow-neu">
         <input
             type="text"
             placeholder="Search for a movie"
