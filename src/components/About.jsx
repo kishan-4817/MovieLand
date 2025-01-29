@@ -14,10 +14,10 @@ export default function About() {
           alt="Cinema"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="absolute inset-0 bg-opacity-60"></div>
         <div className="relative z-20 max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">About CinemaScope</h1>
-          <p className="text-xl md:text-2xl mb-8">Your gateway to the world of cinema</p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 dark:text-[#f9d3b4] text-[#343739]">About CinemaScope</h1>
+          <p className="text-xl md:text-2xl mb-8 dark:text-white text-[#343739]">Your gateway to the world of cinema</p>
           <a href="#contact" className="bg-[#f9d3b4] text-black px-6 py-2 rounded-md hover:bg-[#f9d3b4] transition duration-300">
             Get in Touch
           </a>
@@ -27,15 +27,15 @@ export default function About() {
       {/* Company Overview */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Who We Are</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 dark:text-white text-[#343739]">Who We Are</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <p className="text-lg mb-4">
+              <p className="text-lg mb-4 dark:text-white text-[#343739]">
                 Founded in 2010, CinemaScope has been at the forefront of movie entertainment, 
                 delivering the latest films and classic favorites to audiences worldwide. We believe 
                 in the power of storytelling to inspire, entertain, and bring people together.
               </p>
-              <p className="text-lg">
+              <p className="text-lg dark:text-white text-[#343739]">
                 Our team of film enthusiasts is passionate about curating the best movie experiences 
                 for our viewers. With a focus on quality, diversity, and customer satisfaction, 
                 we've grown to become a leading name in the world of online cinema.
@@ -55,7 +55,7 @@ export default function About() {
       {/* Team Gallery */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Team</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 dark:text-white text-[#343739]">Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=128&h=128&q=80",
@@ -71,7 +71,7 @@ export default function About() {
                   alt={`Team member ${index + 1}`}
                   className="w-32 h-32 rounded-full mb-4"
                 />
-                <h3 className="text-lg font-semibold">John Doe</h3>
+                <h3 className="text-lg font-semibold dark:text-white text-[#f9d3b4]">John Doe</h3>
                 <p className="text-sm text-gray-300">Film Curator</p>
               </div>
             ))}
@@ -82,7 +82,7 @@ export default function About() {
       {/* Mission and Values */}
       <section className="py-16 ">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Mission & Values</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white text-[#343739]">Our Mission & Values</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "Diverse Selection", description: "We curate a wide range of films to cater to all tastes and preferences." },
@@ -90,14 +90,13 @@ export default function About() {
               { title: "Film Appreciation", description: "We foster a community that appreciates and discusses cinema." }
             ].map((item, index) => (
               <div key={index} className="bg-[#343739] rounded-lg shadow-md p-6 flex flex-col items-center">
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-center">{item.description}</p>
+                <h3 className="text-xl font-semibold mb-2 dark:text-white text-[#f9d3b4]">{item.title}</h3>
+                <p className="text-center dark:text-white text-[#ffffff]">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-
 
       {/* Call to Action */}
       <section className="py-16 bg-[#333] text-white">

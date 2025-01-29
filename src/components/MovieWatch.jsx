@@ -9,7 +9,7 @@ const MovieCard = ({ movie }) => {
       </div>
       <div className="w-full h-full">
         <img
-          src={movie.image_url || 'https://via.placeholder.com/400'}
+          src={movie.image_url || 'https://fakeimg.pl/310x460?text=Image&font=bebas?text=Image&font=bebas'}
           alt={movie.name}
           className="w-full h-full object-cover"
         />

@@ -8,7 +8,7 @@ const Footer = () => {
                 <div>
                     <div className="flex lg:flex-1">
                         <a href="/" className="-m-1.5 p-1.5">
-                            <h3 className="text-4xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent dark:text-white"> MovieLand </h3>
+                            <h3 className="text-4xl tracking-wide font-bold bg-gradient-to-r from-[#343739] to-[#ffffff] bg-clip-text text-transparent dark:bg-gradient-to-r dark:from-[#f9d3b4] dark:to-transparent dark:bg-clip-text dark:text-transparent"> MovieLand </h3>
                         </a>
                     </div>
                     <p className="max-w-xs mt-4 text-sm text-gray-600 dark:text-gray-300">

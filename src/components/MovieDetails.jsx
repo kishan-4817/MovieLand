@@ -22,12 +22,12 @@ const MovieDetails = () => {
     return (
         <>
             <Header />
-            <div className="min-h-screen bg-[#212426] text-white p-8">
+            <div className="min-h-screen dark:bg-[#212426] bg-[#ffffff] dark:text-white mt-2 p-8">
                 {movieDetails ? (
                     <div className="mx-auto max-w-2xl">
                         <h1 className="text-4xl font-bold mb-4">{movieDetails.Title}</h1>
                         <img
-                            src={movieDetails.Poster !== 'N/A' ? movieDetails.Poster : 'https://via.placeholder.com/400'}
+                            src={movieDetails.Poster !== 'N/A' ? movieDetails.Poster : 'https://fakeimg.pl/310x460?text=Image&font=bebas'}
                             alt={movieDetails.Title}
                             className="w-full h-auto mb-6 rounded-lg shadow-lg"
                         />

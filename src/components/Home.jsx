@@ -9,11 +9,11 @@ import '../App.css';
 import '../Index.css';
 
 const API_KEY = 'd2e19e09';
-const API_ENDPOINT = `https://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}`;
+const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${API_KEY}`;
 
 const Home = () => {
     useEffect(() => {
-        const moviesList = ['Harry', 'Avengers', 'Batman', 'Spiderman', 'Iron Man', 'Thor', 'Captain America', 'Black Widow', 'The Hulk', 'Wonder Woman', 'Superman', 'Justice League', 'The Flash', 'Green Lantern', 'Aquaman', 'Shazam', 'Hellboy'];
+        const moviesList = ['Harry', 'Avengers', 'Batman', 'Spiderman', 'Iron Man', 'Thor', 'Captain America', 'Black Widow', 'The Hulk', 'Wonder Woman', 'Superman', 'Justice League', 'The Flash', 'Green Lantern', 'Aquaman', 'Shazam', 'Hellboy', 'The Dark Knight', 'The Lord of the Rings', 'Pirates of the Caribbean', 'Star Wars', 'Indiana Jones', 'The Matrix', 'The Terminator', 'The Godfather', 'The Shawshank Redemption', 'The Silence of the Lambs', 'Forrest Gump', 'The Princess Bride', 'The Wizard of Oz', 'The Sound of Music', 'E.T. the Extra-Terrestrial', 'Jaws', 'The Good, the Bad and the Ugly'];
         const randomIndex = Math.floor(Math.random() * moviesList.length);
         const randomMovie = moviesList[randomIndex];
         SearchMovies(randomMovie);
