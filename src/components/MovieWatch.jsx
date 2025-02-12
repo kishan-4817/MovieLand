@@ -39,7 +39,7 @@ const MovieSearchApp = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const apiKey = '9oLoyRsGsSunlCBERLqs6HFaPNnFJvWM7GIz6XqR'; // Replace with your Watchmode API Key
+  const apiKey = '9oLoyRsGsSunlCBERLqs6HFaPNnFJvWM7GIz6XqR';
 
   const fetchMovies = async (searchTitles) => {
     if (!searchTitles) return;
