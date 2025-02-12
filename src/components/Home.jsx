@@ -41,7 +41,7 @@ const Home = () => {
             placeholder="Search for a movie"
             value={SearchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 border-none text-2xl font-raleway font-medium pr-4 outline-none text-[#a1a1a1] bg-[#1f2123]"
+            className="flex-1 border-none text-2xl font-raleway font-medium pr-4 outline-none text-[#a1a1a1] bg-[#1f2123] w-full"
         />
         <img
             src={SearchIcon}

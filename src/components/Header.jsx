@@ -29,7 +29,7 @@ export default function Header() {
             </h3>
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden ml-auto">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}

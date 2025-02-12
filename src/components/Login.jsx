@@ -36,19 +36,19 @@ const Login = () => {
     return (
         <>
             <Header />
-            <section className="bg-[#1c1d1f]">
+            <section className="dark:bg-[#1c1d1f]">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <h1 className="my-8 text-6xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent">
+                    <h1 className="my-8 text-6xl tracking-wide font-bold bg-gradient-to-r from-[#343739] to-transparent bg-clip-text text-transparent dark:from-[#f9d3b4] dark:to-transparent dark:bg-clip-text dark:text-transparent">
                         Login
                     </h1>
-                    <div className="w-full bg-[#212426] rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0">
+                    <div className="w-full bg-[#] rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
-                                Sign in to your account
+                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-800 md:text-2xl">
+                                Login to your account
                             </h1>
                             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
                                         Your email
                                     </label>
                                     <input
@@ -57,13 +57,13 @@ const Login = () => {
                                         id="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="border border-gray-700 text-white rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                        placeholder="name@company.com"
+                                        className="border border-gray-300 text-gray-700 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="name@example.com"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">
+                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">
                                         Password
                                     </label>
                                     <input
@@ -72,7 +72,7 @@ const Login = () => {
                                         id="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="border border-gray-700 text-white rounded-lg ocus:border-primary-600 block w-full p-2.5"
+                                        className="border border-gray-300 text-gray-700 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="••••••••"
                                         required
                                     />
@@ -85,7 +85,7 @@ const Login = () => {
                                 >
                                     {loading ? 'Signing in...' : 'Sign in'}
                                 </button>
-                                <p className="text-sm font-light text-center text-white">
+                                <p className="text-sm font-light text-center text-gray-700">
                                     Don’t have an account yet?{' '}
                                     <a href="/register" className="font-medium text-primary-600 hover:underline">
                                         Sign up
