@@ -15,7 +15,7 @@ const MovieCard = ({ Movie }) => {
             className="w-full h-full"
           />
         </div>
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#343739] hover:bg-transparent">
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#343739] hover:bg-[#000000]">
           <span className="uppercase text-xs tracking-wide font-medium text-[#f0f0f0]">
             {Movie.Type}
           </span>
