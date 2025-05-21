@@ -139,3 +139,33 @@ h1, h2, h3, h4, h5, h6 {
 .input:checked + .slider:before {
   transform: translateX(30px);
 }
+
+/* Override intl-tel-input styles */
+.iti {
+  width: 100%;
+}
+
+.iti input {
+  color: #000 !important; /* Make phone text black */
+  background-color: #fff !important; /* Background white */
+}
+
+.iti input::placeholder {
+  color: #888 !important; /* Placeholder color */
+}
+
+.iti__country-list {
+  background-color: #fff !important; /* Country dropdown background */
+  color: #000 !important; /* Country dropdown text color */
+}
+
+.iti__selected-flag {
+  background-color: #fff !important;
+}
+
+.iti__flag-container {
+  background-color: #fff !important;
+}
+.iti__flag {
+  background-color: #fff !important;
+}

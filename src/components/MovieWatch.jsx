@@ -3,8 +3,10 @@ import axios from 'axios';
 
 const MovieCard = ({ movie }) => {
   return (
-    <div className="w-[310px] h-[460px] m-6 relative rounded-lg overflow-hidden transition-all transform hover:scale-105 shadow-md hover:shadow-lg">
-      <div className="absolute top-0 w-full p-4 text-[#f9d3b4] bg-black bg-opacity-50 opacity-0 transition-opacity hover:opacity-100">
+    <div
+      className="w-[310px] h-[460px] m-6 relative rounded-lg overflow-hidden transition-all transform hover:scale-105 shadow-md hover:shadow-lg dark:bg-[#1f2123] dark:shadow-neu"
+    >
+      <div className="absolute top-0 w-full p-4 text-[#f9d3b4] dark:bg-[#1f2123] dark:bg-opacity-50 opacity-0 transition-opacity hover:opacity-100">
         <p className="text-sm">{movie.year || 'N/A'}</p>
       </div>
       <div className="w-full h-full">
@@ -14,7 +16,7 @@ const MovieCard = ({ movie }) => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#343739] bg-opacity-90 hover:bg-transparent transition-all">
+      <div className="absolute bottom-0 left-0 right-0 p-6 dark:bg-[#1f2123] dark:bg-opacity-90 hover:bg-transparent transition-all">
         <span className="uppercase text-xs tracking-wide font-medium text-[#f0f0f0]">
           {movie.type || 'Movie'}
         </span>
@@ -81,22 +83,22 @@ const MovieSearchApp = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="bg-gradient-to-r from-[#343739] to-[#ffffff]  text-white p-4 text-center">
+    <div className="min-h-screen flex flex-col dark:bg-[#1f2123]">
+      <header className="bg-blue-600 text-white p-4 text-center dark:bg-[#1f2123]">
         <h1 className="text-2xl font-bold">Watchmode Movie Search</h1>
       </header>
-      <main className="flex-grow p-6">
+      <main className="flex-grow p-6 dark:bg-[#1f2123]">
         <form onSubmit={handleSearch} className="flex justify-center mb-6">
           <input
             type="text"
             placeholder="Search for movies..."
-            className="border border-gray-300 rounded-l-lg p-2 w-1/2"
+            className="border border-gray-300 rounded-l-lg p-2 w-1/2 dark:border-gray-700 dark:bg-[#1f2123]"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
           <button
             type="submit"
-            className="bg-gradient-to-r from-[#343739] to-[#ffffff] text-white rounded-r-lg px-4 py-2 transition"
+            className="bg-blue-600 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition dark:bg-[#24272b]"
           >
             Search
           </button>
@@ -111,8 +113,8 @@ const MovieSearchApp = () => {
           <p className="text-center text-gray-500">No results found for "{query}".</p>
         )}
       </main>
-      <footer className="bg-blue-600 text-white text-center p-4">
-        <p>© 2024 Watchmode Movie Search App. All rights reserved.</p>
+      <footer className="bg-[#1f2123] dark:shadow-neu text-white text-center p-4 dark:bg-[#24272b]">
+        <p> 2024 Watchmode Movie Search App. All rights reserved.</p>
       </footer>
     </div>
   );
