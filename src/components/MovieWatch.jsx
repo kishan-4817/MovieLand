@@ -82,7 +82,7 @@ const MovieSearchApp = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-blue-600 text-white p-4 text-center">
+      <header className="bg-gradient-to-r from-[#343739] to-[#ffffff]  text-white p-4 text-center">
         <h1 className="text-2xl font-bold">Watchmode Movie Search</h1>
       </header>
       <main className="flex-grow p-6">
@@ -96,7 +96,7 @@ const MovieSearchApp = () => {
           />
           <button
             type="submit"
-            className="bg-blue-600 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition"
+            className="bg-gradient-to-r from-[#343739] to-[#ffffff] text-white rounded-r-lg px-4 py-2 transition"
           >
             Search
           </button>
