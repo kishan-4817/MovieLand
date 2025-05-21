@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://moviesverse4u.netlify.app/</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/about</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/contact</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/login</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/register</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/profile</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/movie-search</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/movies/top-rated</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/movies/popular</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/movies/new-releases</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/movies/upcoming</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/movies/genres</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/privacy-policy</loc>
+  </url>
+  <url>
+    <loc>https://moviesverse4u.netlify.app/terms-conditions</loc>
+  </url>
+</urlset>
