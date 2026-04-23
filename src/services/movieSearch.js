@@ -1,5 +1,4 @@
 const API_KEY = 'd2e19e09';
-const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${API_KEY}`;
 
 export const searchOmdbMovies = async (query, options = {}) => {
   const nextQuery = query.trim();

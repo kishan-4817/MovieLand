@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 import MovieCard from './MovieCard';
@@ -49,7 +49,7 @@ const MovieFilters = () => {
   const [error, setError] = useState('');
   const requestedQuery = searchParams.get('query')?.trim() || '';
 
-  const fetchMovies = async (query) => {
+  const fetchMovies = useCallback(async (query) => {
     setLoading(true);
     setError('');
 
@@ -64,13 +64,13 @@ const MovieFilters = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [config.defaultQuery]);
 
   useEffect(() => {
     const nextQuery = requestedQuery || config.defaultQuery;
     setSearchTerm(nextQuery);
     fetchMovies(nextQuery);
-  }, [requestedQuery, config.defaultQuery]);
+  }, [requestedQuery, config.defaultQuery, fetchMovies]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -27,6 +27,7 @@ The project is mid-redesign: the homepage, auth flow, contact page, dedicated se
 * ✅ OMDb-powered movie search and browse pages
 * ✅ Movie details page redesigned into the shared visual system
 * ✅ About page redesigned into the shared visual system
+* ✅ Production build currently passes after ESLint cleanup
 * ❌ Profile and legal pages are not aligned with the new design system
 * ❌ Search enhancements like suggestions, filters, sorting, and skeletons are not implemented
 * ❌ API logic is only partially centralized
@@ -34,7 +35,7 @@ The project is mid-redesign: the homepage, auth flow, contact page, dedicated se
 
 # Current Focus
 
-Continuing the migration of the remaining older pages while forcing the shared input styling to win over the Tailwind Forms reset.
+Continuing the migration of the remaining older pages after fixing the CI-blocking ESLint issues and stale local lint cache.
 
 # Next Steps
 
@@ -74,6 +75,7 @@ Continuing the migration of the remaining older pages while forcing the shared i
 * Search UX still lacks suggestions, debouncing, sorting, and skeleton loaders.
 * Legacy browse routes still exist, but the footer now avoids fake OMDb categories that return empty results.
 * Routing/content naming is improved but not fully normalized across the app.
+* Browserslist data is outdated; build passes, but the update warning still appears.
 
 # Setup Instructions
 
