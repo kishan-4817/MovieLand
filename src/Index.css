@@ -1,3 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .app-input {
+    appearance: none !important;
+    width: 100% !important;
+    min-height: 58px !important;
+    border: 1px solid var(--surface-border) !important;
+    border-radius: 1.25rem !important;
+    background: var(--surface-panel-strong) !important;
+    color: var(--text-primary) !important;
+    padding: 1rem 1.1rem !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
+  }
+
+  .dark .app-input {
+    background: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  }
+
+  .app-input::placeholder {
+    color: var(--text-muted) !important;
+  }
+
+  select.app-input {
+    padding-right: 3rem !important;
+    background-image: none !important;
+  }
+
+  textarea.app-input {
+    min-height: 160px !important;
+    resize: vertical !important;
+  }
+
+  .app-input:focus,
+  .app-input:focus-visible {
+    outline: none !important;
+    border-color: rgba(214, 177, 106, 0.72) !important;
+    box-shadow: 0 0 0 4px rgba(214, 177, 106, 0.16) !important;
+  }
+
+  .app-search-input {
+    appearance: none !important;
+    min-height: 58px !important;
+    border: 1px solid var(--surface-border) !important;
+    border-radius: 1.25rem !important;
+    background: var(--surface-panel-strong) !important;
+    color: var(--text-primary) !important;
+    padding: 1rem 1.15rem !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+  }
+
+  .app-search-shell-hero .app-search-input {
+    border-color: var(--hero-border) !important;
+    background: var(--hero-panel-soft) !important;
+  }
+
+  .dark .app-search-input {
+    background: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  }
+
+  .app-search-input::placeholder {
+    color: var(--text-muted) !important;
+  }
+
+  .app-search-input:focus,
+  .app-search-input:focus-visible {
+    outline: none !important;
+    border-color: rgba(214, 177, 106, 0.72) !important;
+    box-shadow: 0 0 0 4px rgba(214, 177, 106, 0.16) !important;
+  }
+
+}

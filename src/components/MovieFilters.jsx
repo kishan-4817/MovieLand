@@ -1,109 +1,154 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import MovieCard from './MovieCard';
-import SearchIcon from '../assets/search.svg';
+import SearchBar from './SearchBar';
 import Header from './Header';
 import Footer from './Footer';
+import { searchOmdbMovies } from '../services/movieSearch';
 
 import '../App.css';
 import '../Index.css';
-
-const API_KEY = 'd2e19e09';
-const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${API_KEY}`;
+const CATEGORY_CONFIG = {
+  'top-rated': {
+    title: 'Award Winners',
+    description: 'OMDb does not provide real ranked feeds, so this shelf uses a strong seed search for acclaimed films.',
+    defaultQuery: 'The Godfather',
+  },
+  popular: {
+    title: 'Popular Picks',
+    description: 'A reliable browse shelf built from strong mainstream title searches instead of empty category feeds.',
+    defaultQuery: 'Batman',
+  },
+  'new-releases': {
+    title: 'Modern Releases',
+    description: 'A current-feeling shelf seeded with newer high-profile titles that OMDb can actually return.',
+    defaultQuery: 'Dune',
+  },
+  upcoming: {
+    title: 'Big Franchises',
+    description: 'OMDb cannot provide a true upcoming feed, so this shelf uses active franchise searches instead.',
+    defaultQuery: 'Mission Impossible',
+  },
+  genres: {
+    title: 'Genre Search',
+    description: 'Search by genre or mood and keep the same standardized browse experience.',
+    defaultQuery: 'science fiction',
+  },
+};
 
 const MovieFilters = () => {
-    const { category } = useParams();
-    const [Movies, setMovies] = useState([]);
-    const [SearchTerm, setSearchTerm] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = location.pathname.split('/').pop();
+  const config = useMemo(() => CATEGORY_CONFIG[category] || CATEGORY_CONFIG.popular, [category]);
+  const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(config.defaultQuery);
+  const [activeQuery, setActiveQuery] = useState(config.defaultQuery);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const requestedQuery = searchParams.get('query')?.trim() || '';
 
-    const fetchMovies = useCallback(async () => {
-        setLoading(true);
-        setError(null);
+  const fetchMovies = async (query) => {
+    setLoading(true);
+    setError('');
 
-        let url = `${API_ENDPOINT}`;
+    try {
+      const result = await searchOmdbMovies(query || config.defaultQuery, { type: 'movie' });
+      setMovies(result.movies);
+      setActiveQuery(result.query || config.defaultQuery);
+      setError(result.error);
+    } catch (fetchError) {
+      setMovies([]);
+      setError('Something went wrong while loading movies.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        if (category === 'top-rated') {
-            url += '&type=movie&sort=rating';
-        } else if (category === 'popular') {
-            url += '&type=movie&s=popular';
-        } else if (category === 'new-releases') {
-            url += '&type=movie&s=new';
-        } else if (category === 'upcoming') {
-            url += '&type=movie&s=upcoming';
-        } else if (category === 'genres' && SearchTerm) {
-            url += `&type=movie&s=${SearchTerm}`;
-        } else {
-            const moviesList = ['Harry', 'Avengers', 'Batman', 'Spiderman', 'Iron Man', 'Thor', 'Captain America', 'Black Widow', 'The Hulk', 'Wonder Woman', 'Superman', 'Justice League', 'The Flash', 'Green Lantern', 'Aquaman', 'Shazam', 'Hellboy'];
-            const randomIndex = Math.floor(Math.random() * moviesList.length);
-            const randomMovie = moviesList[randomIndex];
-            url += `&s=${randomMovie}`;
-        }
+  useEffect(() => {
+    const nextQuery = requestedQuery || config.defaultQuery;
+    setSearchTerm(nextQuery);
+    fetchMovies(nextQuery);
+  }, [requestedQuery, config.defaultQuery]);
 
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            if (data.Response === 'True') {
-                setMovies(data.Search);
-            } else {
-                setMovies([]);
-                setError(data.Error);
-            }
-        } catch (err) {
-            setError('Something went wrong!');
-        } finally {
-            setLoading(false);
-        }
-    }, [category, SearchTerm]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const nextQuery = searchTerm.trim();
 
-    useEffect(() => { fetchMovies(); }, [fetchMovies]);
+    if (!nextQuery) {
+      setError('Enter a movie title to begin searching.');
+      setMovies([]);
+      return;
+    }
 
-    return (
-        <>
-            <Header />
-            <div className="p-4 sm:p-16 flex flex-col justify-center items-center">
-                <h1 className="hidden sm:block my-8 text-6xl tracking-wide font-bold bg-gradient-to-r from-[#f9d3b4] to-transparent bg-clip-text text-transparent">
-                    MovieLand
-                </h1>
-                <div className="w-full sm:w-4/5 my-8 sm:my-10 flex items-center justify-center p-4 sm:p-6 rounded-full bg-[#1f2123] shadow-neu">
-                    <input
-                        type="text"
-                        placeholder="Search for a movie"
-                        value={SearchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="flex-1 border-none text-2xl font-raleway font-medium pr-4 outline-none text-[#a1a1a1] bg-[#1f2123]"
-                    />
-                    <img
-                        src={SearchIcon}
-                        alt="search"
-                        onClick={() => fetchMovies()}
-                        className="w-9 h-9 cursor-pointer"
-                    />
-                </div>
+    setSearchParams({ query: nextQuery });
+  };
 
-                {loading && <p>Loading...</p>}
+  return (
+    <>
+      <Header />
+      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.36em] text-[var(--accent-gold)]">
+              Browse
+            </p>
+            <h1 className="mt-4 text-5xl leading-[0.92] sm:text-6xl">{config.title}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--text-muted)]">
+              {config.description}
+            </p>
+          </div>
 
-                {Movies?.length > 0 ? (
-                    <div className="w-full mt-12 flex justify-center items-center flex-wrap">
-                        {Movies.map((movie) => (
-                            <MovieCard Movie={movie} key={movie.imdbID} />
-                        ))}
-                    </div>
-                ) : error ? (
-                    <div className="w-full mt-12 flex justify-center items-center">
-                        <h2 className="text-xl font-raleway text-[#f9d3b4]">{error}</h2>
-                    </div>
-                ) : (
-                    <div className="w-full mt-12 flex justify-center items-center">
-                        <h2 className="text-xl font-raleway text-[#f9d3b4]">No movies found</h2>
-                    </div>
-                )}
+          <SearchBar
+            id={`browse-search-${category}`}
+            label={`Search within ${config.title}`}
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+            onSubmit={handleSubmit}
+            placeholder="Search inside this browse page"
+          />
+        </section>
+
+        <section className="mt-10">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--accent-gold)]">
+                Current Search
+              </p>
+              <h2 className="mt-3 max-w-3xl text-4xl leading-tight sm:text-5xl">
+                {activeQuery}
+              </h2>
             </div>
-            <Footer />
-        </>
-    );
+            <p className="max-w-md text-sm leading-7 text-[var(--text-muted)]">
+              This page now uses the same search shell, card layout, and spacing logic as
+              the homepage.
+            </p>
+          </div>
+
+          {loading ? (
+            <div className="app-panel mt-10 rounded-[2rem] px-8 py-14 text-center text-[var(--text-muted)]">
+              Loading movies...
+            </div>
+          ) : movies.length > 0 ? (
+            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {movies.map((movie) => (
+                <MovieCard Movie={movie} key={movie.imdbID} />
+              ))}
+            </div>
+          ) : (
+            <div className="app-panel mt-10 rounded-[2rem] px-8 py-14 text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[var(--accent-gold)]">
+                Browse State
+              </p>
+              <h3 className="mt-4 text-3xl">{error || 'No movies found'}</h3>
+            </div>
+          )}
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default MovieFilters;
