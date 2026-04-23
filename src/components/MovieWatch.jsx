@@ -1,125 +1,125 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-const MovieCard = ({ movie }) => {
-  return (
-    <div
-      className="w-[310px] h-[460px] m-6 relative rounded-lg overflow-hidden transition-all transform hover:scale-105 shadow-md hover:shadow-lg dark:bg-[#1f2123] dark:shadow-neu"
-    >
-      <div className="absolute top-0 w-full p-4 text-[#f9d3b4] dark:bg-[#1f2123] dark:bg-opacity-50 opacity-0 transition-opacity hover:opacity-100">
-        <p className="text-sm">{movie.year || 'N/A'}</p>
-      </div>
-      <div className="w-full h-full">
-        <img
-          src={movie.image_url || 'https://fakeimg.pl/310x460?text=Image&font=bebas?text=Image&font=bebas'}
-          alt={movie.name}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 dark:bg-[#1f2123] dark:bg-opacity-90 hover:bg-transparent transition-all">
-        <span className="uppercase text-xs tracking-wide font-medium text-[#f0f0f0]">
-          {movie.type || 'Movie'}
-        </span>
-        <h3 className="mt-2 font-roboto text-lg text-[#f9d3b4] truncate">{movie.name}</h3>
-        {movie.watch_link && (
-          <a
-            href={movie.watch_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block mt-2 text-blue-500 underline"
-          >
-            Watch Now
-          </a>
-        )}
-      </div>
-    </div>
-  );
-};
+import Header from './Header';
+import Footer from './Footer';
+import SearchBar from './SearchBar';
+import MovieCard from './MovieCard';
+import { searchOmdbMovies } from '../services/movieSearch';
 
 const MovieSearchApp = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState('');
+  const [activeQuery, setActiveQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const requestedQuery = searchParams.get('query')?.trim() || '';
 
-  const apiKey = '9oLoyRsGsSunlCBERLqs6HFaPNnFJvWM7GIz6XqR';
-
-  const fetchMovies = async (searchTitles) => {
-    if (!searchTitles) return;
-
+  const fetchMovies = async (searchValue) => {
     setLoading(true);
+    setError('');
+
     try {
-      const response = await axios.get(`https://api.watchmode.com/v1/autocomplete-search/`, {
-        params: {
-          apiKey: apiKey,
-          search_value: searchTitles.join(','),
-          search_field: 'name',
-          types: 'movie',
-        },
-      });
-
-      const moviesWithLinks = await Promise.all(
-        response.data.results.map(async (movie) => {
-          const watchLinkResponse = await axios.get(`https://api.watchmode.com/v1/get-watch-link/`, {
-            params: {
-              apiKey: apiKey,
-              movie_id: movie.id,
-            },
-          });
-          return { ...movie, watch_link: watchLinkResponse.data.link };
-        })
-      );
-
-      setMovies(moviesWithLinks || []);
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      const result = await searchOmdbMovies(searchValue, { type: 'movie' });
+      setMovies(result.movies);
+      setError(result.error);
+      setActiveQuery(result.query);
+    } catch (fetchError) {
       setMovies([]);
+      setError('Something went wrong while loading search results.');
+      setActiveQuery(searchValue.trim());
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetchMovies([query]);
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const nextQuery = query.trim();
+
+    if (!nextQuery) {
+      setMovies([]);
+      setError('Enter a movie title to begin searching.');
+      return;
+    }
+
+    setSearchParams({ query: nextQuery });
   };
+
+  useEffect(() => {
+    const nextQuery = requestedQuery || 'Interstellar';
+    setQuery(nextQuery);
+    fetchMovies(nextQuery);
+  }, [requestedQuery]);
 
   return (
-    <div className="min-h-screen flex flex-col dark:bg-[#1f2123]">
-      <header className="bg-blue-600 text-white p-4 text-center dark:bg-[#1f2123]">
-        <h1 className="text-2xl font-bold">Watchmode Movie Search</h1>
-      </header>
-      <main className="flex-grow p-6 dark:bg-[#1f2123]">
-        <form onSubmit={handleSearch} className="flex justify-center mb-6">
-          <input
-            type="text"
-            placeholder="Search for movies..."
-            className="border border-gray-300 rounded-l-lg p-2 w-1/2 dark:border-gray-700 dark:bg-[#1f2123]"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="bg-blue-600 text-white rounded-r-lg px-4 py-2 hover:bg-blue-700 transition dark:bg-[#24272b]"
-          >
-            Search
-          </button>
-        </form>
-        {loading && <p className="text-center text-gray-500">Loading...</p>}
-        <div className="flex flex-wrap justify-center">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-        {!loading && movies.length === 0 && query && (
-          <p className="text-center text-gray-500">No results found for "{query}".</p>
-        )}
+    <>
+      <Header />
+      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <section className="app-panel rounded-[2rem] p-8 lg:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.36em] text-[var(--accent-gold)]">
+            Movie Search
+          </p>
+          <h1 className="mt-4 max-w-3xl text-5xl leading-[0.92] sm:text-6xl">
+            Search the catalog through the same calmer system used across MovieLand.
+          </h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--text-muted)]">
+            This page is now focused on reliable movie results first, with the same shared
+            search shell, larger input surface, and consistent result cards as the homepage.
+          </p>
+
+          <div className="mt-8">
+            <SearchBar
+              id="watch-search"
+              label="Search the movie catalog"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onSubmit={handleSearch}
+              placeholder="Search by title, franchise, or classic favorite"
+            />
+          </div>
+        </section>
+
+        <section className="mt-10">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--accent-gold)]">
+                Search Results
+              </p>
+              <h2 className="mt-3 max-w-3xl text-4xl leading-tight sm:text-5xl">
+                {activeQuery ? `Results for "${activeQuery}"` : 'Curated results'}
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-7 text-[var(--text-muted)]">
+              A larger search surface, consistent cards, and cleaner result spacing to match
+              the rest of the site.
+            </p>
+          </div>
+
+          {loading ? (
+            <div className="app-panel mt-10 rounded-[2rem] px-8 py-14 text-center text-[var(--text-muted)]">
+              Loading movies...
+            </div>
+          ) : movies.length > 0 ? (
+            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {movies.map((movie) => (
+                <MovieCard Movie={movie} key={movie.imdbID} />
+              ))}
+            </div>
+          ) : (
+            <div className="app-panel mt-10 rounded-[2rem] px-8 py-14 text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[var(--accent-gold)]">
+                Search State
+              </p>
+              <h3 className="mt-4 text-3xl">{error || 'No movies found'}</h3>
+            </div>
+          )}
+        </section>
       </main>
-      <footer className="bg-[#1f2123] dark:shadow-neu text-white text-center p-4 dark:bg-[#24272b]">
-        <p> 2024 Watchmode Movie Search App. All rights reserved.</p>
-      </footer>
-    </div>
+      <Footer />
+    </>
   );
 };
 
 export default MovieSearchApp;
-
-

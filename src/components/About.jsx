@@ -1,115 +1,119 @@
 import React from 'react';
-import Header from "./Header";
-import Footer from "./Footer";
+import { Link } from 'react-router-dom';
+
+import Header from './Header';
+import Footer from './Footer';
+
+const principles = [
+  {
+    title: 'Calmer discovery',
+    description: 'We are shaping MovieLand around cleaner search, better hierarchy, and less visual clutter.',
+  },
+  {
+    title: 'Cinematic tone',
+    description: 'The product should feel closer to a film journal than a noisy catalog of disconnected cards.',
+  },
+  {
+    title: 'Better foundations',
+    description: 'Shared surfaces, typography, and search patterns give the app a system we can keep building on.',
+  },
+];
+
+const milestones = [
+  'Shared homepage, auth, contact, search, and movie-detail design system',
+  'OMDb-based search flows with cleaner result presentation',
+  'A foundation for future watchlists, personalization, and richer metadata',
+];
 
 export default function About() {
   return (
-    <div className="flex flex-col min-h-screen text-white">
+    <>
       <Header />
-      
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center text-center">
-        <img
-          src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80"
-          alt="Cinema"
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-opacity-60"></div>
-        <div className="relative z-20 max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 dark:text-[#f9d3b4] text-[#343739]">About CinemaScope</h1>
-          <p className="text-xl md:text-2xl mb-8 dark:text-white text-[#343739]">Your gateway to the world of cinema</p>
-          <a href="#contact" className="bg-[#f9d3b4] text-black px-6 py-2 rounded-md hover:bg-[#f9d3b4] transition duration-300">
-            Get in Touch
-          </a>
-        </div>
-      </section>
-
-      {/* Company Overview */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 dark:text-white text-[#343739]">Who We Are</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+      <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <section className="app-panel rounded-[2rem] p-8 lg:p-10">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
             <div>
-              <p className="text-lg mb-4 dark:text-white text-[#343739]">
-                Founded in 2010, CinemaScope has been at the forefront of movie entertainment, 
-                delivering the latest films and classic favorites to audiences worldwide. We believe 
-                in the power of storytelling to inspire, entertain, and bring people together.
+              <p className="text-xs font-semibold uppercase tracking-[0.36em] text-[var(--accent-gold)]">
+                About MovieLand
               </p>
-              <p className="text-lg dark:text-white text-[#343739]">
-                Our team of film enthusiasts is passionate about curating the best movie experiences 
-                for our viewers. With a focus on quality, diversity, and customer satisfaction, 
-                we've grown to become a leading name in the world of online cinema.
+              <h1 className="mt-4 max-w-3xl text-5xl leading-[0.92] sm:text-6xl">
+                A movie app being reshaped into a calmer, more intentional discovery experience.
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--text-muted)]">
+                MovieLand started as a straightforward movie search project and is now being rebuilt
+                into a more cinematic product with stronger design foundations, clearer browsing,
+                and better room for future features.
               </p>
             </div>
-            <div className="relative h-64 md:h-full">
-              <img
-                src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&h=400&q=80"
-                alt="Movie theater"
-                className="w-full h-full object-cover rounded-lg shadow-lg"
-              />
+
+            <div className="rounded-[1.75rem] border border-[var(--surface-border)] bg-[var(--surface-panel-strong)] p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--accent-gold)]">
+                Current Direction
+              </p>
+              <p className="mt-4 text-base leading-7 text-[var(--text-muted)]">
+                Design first, cleaner search, reusable UI, and a product language that feels
+                premium without becoming complicated.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Team Gallery */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 dark:text-white text-[#343739]">Our Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=128&h=128&q=80",
-              "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=128&h=128&q=80",
-              "https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=128&h=128&q=80",
-              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=128&h=128&q=80",
-              "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=128&h=128&q=80",
-              "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=128&h=128&q=80"
-            ].map((src, index) => (
-              <div key={index} className="bg-[#343739] rounded-lg shadow-md p-6 flex flex-col items-center">
-                <img
-                  src={src}
-                  alt={`Team member ${index + 1}`}
-                  className="w-32 h-32 rounded-full mb-4"
-                />
-                <h3 className="text-lg font-semibold dark:text-white text-[#f9d3b4]">John Doe</h3>
-                <p className="text-sm text-gray-300">Film Curator</p>
-              </div>
-            ))}
+        <section className="mt-10 grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="app-panel rounded-[2rem] p-8 lg:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[var(--accent-gold)]">
+              What We Are Building
+            </p>
+            <div className="mt-8 grid gap-5">
+              {principles.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[1.5rem] border border-[var(--surface-border)] bg-[var(--surface-panel-strong)] p-5"
+                >
+                  <h2 className="text-3xl leading-tight text-[var(--text-primary)]">{item.title}</h2>
+                  <p className="mt-3 text-base leading-7 text-[var(--text-muted)]">{item.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Mission and Values */}
-      <section className="py-16 ">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 dark:text-white text-[#343739]">Our Mission & Values</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: "Diverse Selection", description: "We curate a wide range of films to cater to all tastes and preferences." },
-              { title: "Quality Streaming", description: "We ensure high-quality streaming for the best viewing experience." },
-              { title: "Film Appreciation", description: "We foster a community that appreciates and discusses cinema." }
-            ].map((item, index) => (
-              <div key={index} className="bg-[#343739] rounded-lg shadow-md p-6 flex flex-col items-center">
-                <h3 className="text-xl font-semibold mb-2 dark:text-white text-[#f9d3b4]">{item.title}</h3>
-                <p className="text-center dark:text-white text-[#ffffff]">{item.description}</p>
+          <div className="space-y-8">
+            <section className="app-panel rounded-[2rem] p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[var(--accent-gold)]">
+                Progress
+              </p>
+              <ul className="mt-6 space-y-4">
+                {milestones.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-[1.25rem] border border-[var(--surface-border)] bg-[var(--surface-panel-strong)] px-5 py-4 text-base leading-7 text-[var(--text-primary)]"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="app-panel rounded-[2rem] p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[var(--accent-gold)]">
+                Next Layer
+              </p>
+              <p className="mt-4 text-base leading-7 text-[var(--text-muted)]">
+                The next steps are finishing the remaining older pages, improving the API layer,
+                and adding the user features that make the product feel personal.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link to="/contact" className="app-button-primary">
+                  Contact Us
+                </Link>
+                <Link to="/movie-search?query=Interstellar" className="app-button-secondary">
+                  Explore Movies
+                </Link>
               </div>
-            ))}
+            </section>
           </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-16 bg-[#333] text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Cinema Journey?</h2>
-          <p className="text-xl mb-8">Join CinemaScope and explore the world of movies</p>
-          <a href="#signup" className="bg-white text-black px-6 py-2 rounded-md hover:bg-gray-100 transition duration-300">
-            Sign Up Now
-          </a>
-        </div>
-      </section>
-
+        </section>
+      </main>
       <Footer />
-    </div>
-  )
+    </>
+  );
 }
